@@ -1,7 +1,7 @@
-﻿using EspotsOrganizer.Api.Models;
+﻿using EsportsOrganizer.Api.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace EspotsOrganizer.Api.Data
+namespace EsportsOrganizer.Api.Data
 {
 	public class EsportsDbContext : DbContext
 	{

@@ -1,4 +1,4 @@
-using EspotsOrganizer.Api.Data;
+using EsportsOrganizer.Api.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

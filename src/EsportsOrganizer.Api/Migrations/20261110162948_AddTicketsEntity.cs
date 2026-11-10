@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace EspotsOrganizer.Api.Migrations
+namespace EsportsOrganizer.Api.Migrations
 {
     /// <inheritdoc />
     public partial class AddTicketsEntity : Migration

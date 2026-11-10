@@ -1,4 +1,4 @@
-﻿namespace EspotsOrganizer.Api.Models
+﻿namespace EsportsOrganizer.Api.Models
 {
 	public class Event
 	{

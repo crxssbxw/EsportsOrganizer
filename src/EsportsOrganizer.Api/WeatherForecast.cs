@@ -1,4 +1,4 @@
-namespace EspotsOrganizer.Api;
+namespace EsportsOrganizer.Api;
 
 public class WeatherForecast
 {

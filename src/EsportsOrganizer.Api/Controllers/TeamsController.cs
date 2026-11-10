@@ -1,9 +1,9 @@
-﻿using EspotsOrganizer.Api.Data;
-using EspotsOrganizer.Api.Models;
+﻿using EsportsOrganizer.Api.Data;
+using EsportsOrganizer.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace EspotsOrganizer.Api.Controllers
+namespace EsportsOrganizer.Api.Controllers
 {
 	[ApiController]
 	[Route("api/[controller]")]
