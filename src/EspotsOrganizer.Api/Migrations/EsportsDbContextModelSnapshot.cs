@@ -54,6 +54,46 @@ namespace EspotsOrganizer.Api.Migrations
                     b.ToTable("Events");
                 });
 
+            modelBuilder.Entity("EspotsOrganizer.Api.Models.Match", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("EventId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("MatchTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Team1Id")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("Team1Score")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Team2Id")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("Team2Score")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventId");
+
+                    b.HasIndex("Team1Id");
+
+                    b.HasIndex("Team2Id");
+
+                    b.ToTable("Matches");
+                });
+
             modelBuilder.Entity("EspotsOrganizer.Api.Models.Team", b =>
                 {
                     b.Property<int>("Id")
@@ -75,6 +115,33 @@ namespace EspotsOrganizer.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Teams");
+                });
+
+            modelBuilder.Entity("EspotsOrganizer.Api.Models.Match", b =>
+                {
+                    b.HasOne("EspotsOrganizer.Api.Models.Event", "Event")
+                        .WithMany()
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EspotsOrganizer.Api.Models.Team", "Team1")
+                        .WithMany()
+                        .HasForeignKey("Team1Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EspotsOrganizer.Api.Models.Team", "Team2")
+                        .WithMany()
+                        .HasForeignKey("Team2Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Event");
+
+                    b.Navigation("Team1");
+
+                    b.Navigation("Team2");
                 });
 #pragma warning restore 612, 618
         }
