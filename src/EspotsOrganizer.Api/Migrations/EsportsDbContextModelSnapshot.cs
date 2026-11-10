@@ -117,6 +117,34 @@ namespace EspotsOrganizer.Api.Migrations
                     b.ToTable("Teams");
                 });
 
+            modelBuilder.Entity("EspotsOrganizer.Api.Models.Ticket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("BuyerName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("EventId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("PurchaseDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventId");
+
+                    b.ToTable("Tickets");
+                });
+
             modelBuilder.Entity("EspotsOrganizer.Api.Models.Match", b =>
                 {
                     b.HasOne("EspotsOrganizer.Api.Models.Event", "Event")
@@ -142,6 +170,17 @@ namespace EspotsOrganizer.Api.Migrations
                     b.Navigation("Team1");
 
                     b.Navigation("Team2");
+                });
+
+            modelBuilder.Entity("EspotsOrganizer.Api.Models.Ticket", b =>
+                {
+                    b.HasOne("EspotsOrganizer.Api.Models.Event", "Event")
+                        .WithMany()
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Event");
                 });
 #pragma warning restore 612, 618
         }

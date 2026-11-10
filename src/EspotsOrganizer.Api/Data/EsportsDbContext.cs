@@ -13,6 +13,7 @@ namespace EspotsOrganizer.Api.Data
 		public DbSet<Team> Teams { get; set; }
 		public DbSet<Event> Events { get; set; }
 		public DbSet<Match> Matches { get; set; }
+		public DbSet<Ticket> Tickets { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
