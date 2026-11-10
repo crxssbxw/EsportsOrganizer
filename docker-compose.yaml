@@ -31,7 +31,7 @@ services:
     environment:
       - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=EsportsDb;Username=admin;Password=admin;
       - ASPNETCORE_ENVIRONMENT=Development
-    depends-on:
+    depends_on:
       - db
     restart: unless-stopped
 
