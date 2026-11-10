@@ -22,6 +22,43 @@ namespace EspotsOrganizer.Api.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("EspotsOrganizer.Api.Models.Article", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AuthorId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int?>("EventId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("PublishedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("EventId");
+
+                    b.ToTable("Articles");
+                });
+
             modelBuilder.Entity("EspotsOrganizer.Api.Models.Event", b =>
                 {
                     b.Property<int>("Id")
@@ -143,6 +180,43 @@ namespace EspotsOrganizer.Api.Migrations
                     b.HasIndex("EventId");
 
                     b.ToTable("Tickets");
+                });
+
+            modelBuilder.Entity("EspotsOrganizer.Api.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Role")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("EspotsOrganizer.Api.Models.Article", b =>
+                {
+                    b.HasOne("EspotsOrganizer.Api.Models.User", "Author")
+                        .WithMany()
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EspotsOrganizer.Api.Models.Event", "Event")
+                        .WithMany()
+                        .HasForeignKey("EventId");
+
+                    b.Navigation("Author");
+
+                    b.Navigation("Event");
                 });
 
             modelBuilder.Entity("EspotsOrganizer.Api.Models.Match", b =>

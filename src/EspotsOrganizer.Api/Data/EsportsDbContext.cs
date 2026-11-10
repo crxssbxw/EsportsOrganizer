@@ -14,6 +14,8 @@ namespace EspotsOrganizer.Api.Data
 		public DbSet<Event> Events { get; set; }
 		public DbSet<Match> Matches { get; set; }
 		public DbSet<Ticket> Tickets { get; set; }
+		public DbSet<User> Users { get; set; }
+		public DbSet<Article> Articles { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
