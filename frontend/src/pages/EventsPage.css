@@ -1,0 +1,11 @@
+.filter-btn.active{
+    background-color: blue;
+}
+
+.filter-btn{
+    background-color: gray;
+}
+
+.filter-btn:hover{
+    background-color: darkgray;
+}

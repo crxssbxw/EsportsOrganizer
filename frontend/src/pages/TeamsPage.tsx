@@ -24,7 +24,7 @@ function TeamsPage(){
                 setError(err.message);
             }
             else{
-                console.error("Unknown error");
+                console.error(err);
                 setError("Неизвестная ошибка");
             }
       } finally {
