@@ -16,15 +16,21 @@ namespace EsportsOrganizer.Api.Controllers
 			_context = context;
 		}
 
-		// GET api/mathces
+		// GET api/matches
 		[HttpGet]
-		public async Task<ActionResult<IEnumerable<Match>>> GetAllMatches()
+		public async Task<ActionResult<IEnumerable<Match>>> GetAllMatches([FromQuery] MatchStatus? status = null)
 		{
-			var matches = await _context.Matches
-				.Include(m => m.Team1)
-				.Include(m => m.Team2)
+			IQueryable<Match> query = _context.Matches
 				.Include(m => m.Event)
-				.ToListAsync();
+				.Include(m => m.Team1)
+				.Include(m => m.Team2);
+
+			if (status.HasValue)
+			{
+				query = query.Where(m => m.Status == status.Value);
+			}
+
+			var matches = await query.ToListAsync();
 
 			return Ok(matches);
 		}
